@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GameCommandDto {
 
+    private String sessionId;
     private CommandType commandType;
 
 }

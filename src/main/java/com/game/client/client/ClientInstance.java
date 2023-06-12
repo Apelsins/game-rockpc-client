@@ -4,8 +4,11 @@ import com.esotericsoftware.kryonet.Client;
 import com.game.client.config.ConnectionProperties;
 import com.game.client.dto.CommandType;
 import com.game.client.dto.GameCommandDto;
+import com.game.client.dto.InitSessionCommandDto;
 import com.game.client.dto.RegistrationCommandDto;
 import com.game.client.dto.RegistrationDto;
+import com.game.client.dto.ResultDto;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -24,6 +27,8 @@ public class ClientInstance {
             client.getKryo().register(RegistrationDto.class);
             client.getKryo().register(RegistrationCommandDto.class);
             client.getKryo().register(GameCommandDto.class);
+            client.getKryo().register(InitSessionCommandDto.class);
+            client.getKryo().register(ResultDto.class);
 
             client.start();
 
@@ -35,7 +40,7 @@ public class ClientInstance {
         }
     }
 
-    public boolean sendTCP(final Object msg) {
+    public boolean sendTCP(@NonNull final Object msg) {
         final int countBytes = client.sendTCP(msg);
         return countBytes > 0;
     }
